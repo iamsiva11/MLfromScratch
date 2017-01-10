@@ -21,9 +21,31 @@ def get_distance(data1, data2):#(data point 1, data point 2)
     return math.sqrt(sum(diffs_squared_distance))
 
 
+#Helper method
 def _get_tuple_distance(training_instance, test_instance):
      return (training_instance, get_distance(test_instance, training_instance))
 
 
-data1,data2 = [2,3] , [6,9]
-print get_distance(data1,data2)	
+#2) given a training set and a test instance, use getDistance 
+#to calculate all pairwise distances
+def get_neighbours(training_set, test_instance, k):
+    distances = [_get_tuple_distance(training_instance, test_instance) for training_instance in training_set]
+    # index 1 is the calculated distance between training_instance and test_instance
+    sorted_distances = sorted(distances, key=itemgetter(1))
+    # extract only training instances
+    sorted_training_instances = [tuple[0] for tuple in sorted_distances]
+    # select first k elements
+    return sorted_training_instances[:k]
+
+
+#data1,data2 = [2,3] , [6,9]
+#print get_distance(data1,data2)	
+
+training_set = [[1,3],[4,7],[9,1],[4,8]]
+test_instance= [4,8]
+
+print [_get_tuple_distance(training_instance, test_instance) for training_instance in training_set]
+
+
+
+
