@@ -10,7 +10,7 @@ The kNN task can be broken down into writing 3 primary functions:
 
 """
 import math
-#from operator import itemgetter
+from operator import itemgetter
 
 #1) given two data points, calculate the euclidean distance between them
 #Works even for data in the multidimensional space
@@ -38,14 +38,8 @@ def get_neighbours(training_set, test_instance, k):
     return sorted_training_instances[:k]
 
 
-#data1,data2 = [2,3] , [6,9]
-#print get_distance(data1,data2)	
-
-training_set = [[1,3],[4,7],[9,1],[4,8]]
-test_instance= [4,8]
-
-print [_get_tuple_distance(training_instance, test_instance) for training_instance in training_set]
-
-
-
-
+if __name__=="__main__":
+	training_set = [[1,3],[4,7],[9,1],[4,8]]
+	test_instance= [4,8]
+	print [_get_tuple_distance(training_instance, test_instance) for training_instance in training_set]	
+	print get_neighbours(training_set, test_instance, 3)
