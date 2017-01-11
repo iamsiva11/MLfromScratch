@@ -11,6 +11,7 @@ The kNN task can be broken down into writing 3 primary functions:
 """
 import math
 from operator import itemgetter
+from collections import Counter
 
 #1) given two data points, calculate the euclidean distance between them
 #Works even for data in the multidimensional space
@@ -38,8 +39,19 @@ def get_neighbours(training_set, test_instance, k):
     return sorted_training_instances[:k]
 
 
+def get_majority_vote(neighbours_list):
+	#We are gonna make index 1 as the class label here
+	classes = [neighbour[1] for neighbour in neighbours_list]
+	count= Counter(classes)
+	return count.most_common()[0][0]
+
+
 if __name__=="__main__":
-	training_set = [[1,3],[4,7],[9,1],[4,8]]
+	training_set = [[1,3],[4,7],[9,1],[4,8],[5,7]]
 	test_instance= [4,8]
-	print [_get_tuple_distance(training_instance, test_instance) for training_instance in training_set]	
-	print get_neighbours(training_set, test_instance, 3)
+	print [_get_tuple_distance(training_instance, test_instance) for training_instance in training_set]		
+	neighbours = get_neighbours(training_set, test_instance, 3)
+	print neighbours
+	print get_majority_vote(neighbours)
+
+
