@@ -1,11 +1,8 @@
 """
 The kNN task can be broken down into writing 3 primary functions:
 1/ Calculate the distance between any two points
-2/ Find the nearest neighbours based on these pairwise distances
-(Sort the training Data points based on the distance)
-3/ Majority vote on a class labels based on the nearest neighbour list
-(Get the max nearest neighbour (i.e. the majority vote)
--Sort the top k data points)
+2/ Find the nearest neighbours based on these pairwise distances (Sort the training Data points based on the distance)
+3/ Majority vote on a class labels based on the nearest neighbour list (Get the max nearest neighbour (i.e. the majority vote) - Sort the top k data points)
 """
 
 import math
@@ -13,14 +10,11 @@ from operator import itemgetter
 from collections import Counter
 import numpy as np
 
-
 class knn:
-
 	def __init__(self,k=None):
 		self.training_set = [[1,3],[4,7],[9,1],[4,8],[5,7],[2,4],[2,7]]
 		self.test_instance= [4,8]
 		self.k=k
-
 
 	#Helper method for _get_tuple_distance
 	#1) given two data points, calculate the euclidean distance between them
@@ -29,7 +23,6 @@ class knn:
 	    points = zip(data1, data2)    
 	    diffs_squared_distance = [pow(a - b, 2) for (a, b) in points]    
 	    return math.sqrt(sum(diffs_squared_distance))
-
 	
 	def _get_tuple_distance(self,training_instance):
 	    return (training_instance, self.get_distance(self.test_instance, training_instance))
@@ -45,7 +38,6 @@ class knn:
 	    sorted_training_instances = [tuple[0] for tuple in sorted_distances]
 	    # select first k elements
 	    return sorted_training_instances[:self.k]
-
 
 class knnClassifier:
 
@@ -65,20 +57,12 @@ class knnRegressor:
 		#mean or median value of the classes is calculated here
 		return np.mean(classes)	
 
-
 if __name__=="__main__":
 
 	#get_neighbours() will proint the sorted distances of each training instance
 	neighbours= knn(3).get_neighbours()
 	print neighbours	
-
 	#Classification
 	print knnClassifier().get_majority_vote(neighbours)
-
 	#Regression
 	print knnRegressor().get_mean_value(neighbours)
-
-
-
-
-
