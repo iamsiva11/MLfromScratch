@@ -56,6 +56,14 @@ class knnClassifier:
 		count= Counter(classes)
 		return count.most_common()[0][0]
 
+class knnRegressor:	
+
+	#For Regression
+	def get_mean_value(self,neighbours): 
+		#Assuming we are taking the classes as the index 1 here 
+		classes = [neighbour[1] for neighbour in neighbours]
+		#mean or median value of the classes is calculated here
+		return np.mean(classes)	
 
 
 if __name__=="__main__":
