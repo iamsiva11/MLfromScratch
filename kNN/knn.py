@@ -16,10 +16,10 @@ class knn:
 		self.test_instance= [4,8]
 		self.k=k
 
-	#Helper method for _get_tuple_distance
-	#1) given two data points, calculate the euclidean distance between them
-	#Works even for data in the multidimensional space
-	def get_distance(self,data1, data2):#(data point 1, data point 2)
+	"""Helper method for _get_tuple_distance
+	1) given two data points, calculate the euclidean distance between them
+	#Works even for data in the multidimensional space"""
+	def get_distance(self,data1, data2):
 	    points = zip(data1, data2)    
 	    diffs_squared_distance = [pow(a - b, 2) for (a, b) in points]    
 	    return math.sqrt(sum(diffs_squared_distance))
@@ -27,8 +27,8 @@ class knn:
 	def _get_tuple_distance(self,training_instance):
 	    return (training_instance, self.get_distance(self.test_instance, training_instance))
 
-	#2) given a training set and a test instance, use getDistance 
-	#to calculate all pairwise distances
+	"""2) given a training set and a test instance, use getDistance 
+	to calculate all pairwise distances"""
 	def get_neighbours(self):
 	    distances = [self._get_tuple_distance(training_instance) for training_instance in self.training_set]
 	    # index 1 is the calculated distance between training_instance and test_instance
@@ -40,8 +40,7 @@ class knn:
 	    return sorted_training_instances[:self.k]
 
 class knnClassifier:
-
-	#For Classification
+	"""For Classification"""
 	def get_majority_vote(self,neighbours_list):
 		#We are gonna make index 1 as the class label here
 		classes = [neighbour[1] for neighbour in neighbours_list]
@@ -49,8 +48,7 @@ class knnClassifier:
 		return count.most_common()[0][0]
 
 class knnRegressor:	
-
-	#For Regression
+	"""For Regression"""
 	def get_mean_value(self,neighbours): 
 		#Assuming we are taking the classes as the index 1 here 
 		classes = [neighbour[1] for neighbour in neighbours]
