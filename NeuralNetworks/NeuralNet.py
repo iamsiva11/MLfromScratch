@@ -1,6 +1,9 @@
 """
 The program creates an neural network that simulates the 
 exclusive OR function with two inputs and one output. 
+
+TODO: 
+* Add documentations , explanations
 """
 
 import numpy as np
