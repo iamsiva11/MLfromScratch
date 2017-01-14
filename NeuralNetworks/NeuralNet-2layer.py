@@ -37,3 +37,10 @@ for iter in xrange(10000):
 
 print l1
 
+#Output
+# Output after training
+# [[ 0.00966449]
+#  [ 0.00786506]
+#  [ 0.99358898]
+#  [ 0.99211957]]
+
