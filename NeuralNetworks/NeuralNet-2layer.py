@@ -14,24 +14,19 @@ X = np.array([  [0,0,1],
 #output
 y = np.array([[0,0,1,1]]).T
 
-
 # seed random numbers to make calculation
 # deterministic (just a good practice)
 np.random.seed(1)
-
 #initialize weights randomly with mean 0 , 3X1 matrix
 syn0 = 2*np.random.random((3,1)) - 1
 
 for iter in xrange(10000):
-
     l0 = X
     l1 = nonlinear(np.dot(l0,syn0))
-
     l1_error = y-l1
-
+    
     #backprop starts
     l1_delta = l1_error * nonlinear(l1,True)
-
     #update the weights
     syn0 += np.dot(l0.T,l1_delta)
 
