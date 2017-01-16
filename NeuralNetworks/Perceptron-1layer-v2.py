@@ -15,13 +15,12 @@ def generate_data(no_of_points):
 	return X,Y	
 
 
-
 def perceptron(X, Y, b=0 , max_iter = 10):
 	"""
 	b = bias 
 	X - input train data . n rows(training eg.) and m columns (features)
 	"""
-	n,m = shape(X)
+	n,m = np.shape(X)
 	#weight vector
 	w = np.zeros(m)
 
@@ -31,7 +30,20 @@ def perceptron(X, Y, b=0 , max_iter = 10):
 			y_i = Y[jj] #i'th training instance - output
 
 			a = b + np.dot(w, x_i)
-			
+
+			#error update
+			if np.sign(y_i*a) !=1:
+				w += y_i * x_i
+				b += y_i
+
+		print ("iteration %s: new weight_vector: %s : new bias: %s " % (ii, w ,b))
+
+
+
+if __name__=="__main__":
+	X,Y = generate_data(10)
+	perceptron(X,Y)
+
 
 
 
