@@ -1,8 +1,10 @@
 import numpy as numpy
 import random
 
-
 def generate_data(no_of_points):
+	"""
+	no_of_points - No of training points to generate
+	"""
 	X = np.zeros(shape = (no_of_points, 2 ))
 	Y = np.zeros(shape = no_of_points)
 
@@ -13,7 +15,6 @@ def generate_data(no_of_points):
 		X[ii][1] = random.randint(1,9) + 0.5
 		Y[ii] = 1 if X[ii][0]+X[ii][1] >= 13 else -1
 	return X,Y	
-
 
 def perceptron(X, Y, b=0 , max_iter = 10):
 	"""
