@@ -47,7 +47,6 @@ class LinearRegression:
 
         return self.coef,prediction
 
-
 if __name__ == "__main__":
 
     dataset = [[1, 1], [2, 3], [4, 3], [3, 2], [5, 5]]
@@ -61,11 +60,3 @@ if __name__ == "__main__":
 
     #predict for new/unseen data
     print lr.predict([2,7])
-
-"""
-Output:
-[0.22363758744800738, 0.8323576874386835]
-[1.0521986084495785, 1.881031705123155, 3.5534532807375063, 2.715624349155025, 4.369020559180108]
-9.37957214927
-
-"""
