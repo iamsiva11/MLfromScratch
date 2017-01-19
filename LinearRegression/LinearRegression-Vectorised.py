@@ -29,3 +29,10 @@ class Linalg:
 
 		return self.theta	
 
+
+if __name__== "__main__":
+	X = np.array([ [1,1], [2,1], [4,1], [3,1], [5,1] ])
+	y = np.array([1,3,3,2,5])
+	lr = LinReg(.1,100,1)
+	print lr.fit(X,y)   
+
