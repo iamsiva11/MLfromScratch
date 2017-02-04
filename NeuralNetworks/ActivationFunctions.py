@@ -21,6 +21,18 @@ def ReLU(x):
 
 def ReLU_d(x):
     return 1 * (x>0)
+
+
+
+#step
+""" ReLu_d is same as step function"""
+def step(x):
+	return 1 * (x>0)
+
+def softmax(x)	:
+	e_x= np.exp(x-np.max(x))
+	return e_x / e_x.sum()
+
     
 
 if __name__=="__main__":
