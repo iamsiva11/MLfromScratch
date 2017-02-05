@@ -1,12 +1,3 @@
-"""
-#PEP Standard
-#Professional Code,Idioms
-#Python Pro -Start
-#Start small, make it a habit
-#Todo,Habit
-#adding docstrings , space between var,commas
-#to improve readability
-"""
 import numpy as np
 
 MAX_NUMBER_OF_EPOCHS = 60000
@@ -21,7 +12,7 @@ class NeuralNet:
         self.W1 = 2*np.random.random((3,4))-1
         self.W2 = 2*np.random.random((4,1))-1
                 
-    """Acticvation Functions"""
+    """Activation Functions"""
     def sigmoid(self, x):
         return 1/(1 + np.exp(-x))
     
@@ -32,9 +23,10 @@ class NeuralNet:
     """Forward Propogation"""
     def forward(self, X):
         """
+        Inputs:
         X - Input matrix
         Returns:
-        y1,y2 - Hidden ,output layer states        
+        y1, y2 - Hidden , output layer states        
         """
         z1 = np.dot(X, self.W1)
         y1 = self.sigmoid(z1)      
@@ -42,14 +34,12 @@ class NeuralNet:
         y2= self.sigmoid(z2)
         
         return y1, y2        
-        
-#         print x
-#         print z1
-#         print y1
+
 
     """Backward Propogation"""
     def  backward(self, X, y, y1, y2):
     	"""
+    	Inputs:
     	X - Input matrix
     	y - label/target
     	y1,y2 - Hidden ,output layer states        
@@ -64,12 +54,23 @@ class NeuralNet:
 
     """Weight update"""
     def update_weights(self, der_W1, der_W2):
+    	"""
+        Inputs:
+        der_W1 - error derivative (gradient) with respect to W1
+        der_W2 - error derivative (gradient) with respect to W2
+        """
         self.W1 -= self.learning_rate * der_W1
         self.W2 -= self.learning_rate * der_W2
         
     
-    def flow(self,X,y):
-
+    def network_flow(self,X,y):
+    	"""
+    	Inputs:
+    	X - Input matrix
+    	y - label/target
+    	Returns:
+    	y2 - final output layer
+    	"""
         for _ in range(len(X)):            
             #Forward Propogation
             y1,y2 = self.forward(X)
@@ -80,12 +81,18 @@ class NeuralNet:
         return y2                       
     
     def train(self,X,y):
-        #Training Starts
+    	"""
+    	Inputs:
+    	X - Input matrix
+    	y - label/target
+    	Returns:
+    	res - final output layer
+    	"""
+        
         for epoch in range(MAX_NUMBER_OF_EPOCHS):
             #print "\nEpoch: %d" % epoch
-            res = self.flow(X,y)                        
+            res = self.network_flow(X,y)                        
         return res 
-
 
     #error calculation
     def error(self):
