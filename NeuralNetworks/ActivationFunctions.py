@@ -29,11 +29,42 @@ def ReLU_d(x):
 def step(x):
 	return 1 * (x>0)
 
+
+#softmax
 def softmax(x)	:
 	e_x= np.exp(x-np.max(x))
 	return e_x / e_x.sum()
 
+def softmax_d(x):
+	return np.ones(x.shape)
+
+
+#linear
+def linear(x):
+	return x
+
+def linear_d(x):
+	return np.ones(x.shape)
+
+
+#LReLU
+def Leaky_ReLu(x, leakage = 0.01):
+	output = np.copy(x)
+	output[output<0] *= leakage
+	return output
     
+def Leaky_ReLu_d(x, leakage = 0.01):
+	return np.clip(signal>0, leakage , 1.0)
+	
+
+#softplus
+def softplus(x):
+	return x / (1 + np.abs(x) )
+
+def softplus(x):
+	return 1 / (1 + np.abs(x) )**2
+
+
 
 if __name__=="__main__":
     
