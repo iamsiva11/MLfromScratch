@@ -1,7 +1,7 @@
-import numpy as numpy
+import numpy as np
 
 class PCA:
-	def __init__:(self, k):
+	def __init__(self, k):
 		self.k = k
 		self.means = None
 		self.w = None
@@ -27,7 +27,11 @@ if __name__=="__main__":
                [ 3.5 ,111, 6.5, 1],
                [ 5.5 ,78 , 8.5 ,2] ])
 
-	pca=PCA(2)
+	# pca=PCA(2)
+	# pca.fit(X)
+	# print pca.transform(X)
+
+	pca=PCA(3)
 	pca.fit(X)
 	print pca.transform(X)
 
